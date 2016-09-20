@@ -13,7 +13,6 @@
 #define DIFFUSER_UUID_MAIN_BUTTON_CHAR       0x9529
 #define DIFFUSER_UUID_FAN_CHAR               0x952A
 
-
 typedef struct ble_diffuser_s ble_diffuser_t;
                                    
 typedef void (*ble_lbs_rgb_led_write_handler_t) (ble_diffuser_t * p_diffuser, uint8_t length, uint8_t * new_value);
@@ -54,6 +53,7 @@ typedef struct
 
 extern uint32_t ble_diffuser_peripherial_init(ble_diffuser_t * p_diffuser, const ble_diffuser_init_t * p_diffuser_init);
 extern void ble_diffuser_on_ble_evt(ble_diffuser_t * p_ble_diffusers, ble_evt_t * p_ble_evt);
+extern uint32_t ble_diffuser_main_button_status_update(ble_diffuser_t * p_diffuser);
 
 
 //#define BTN_ID_LED0             0  /**< ID of button used to wake up the application. */

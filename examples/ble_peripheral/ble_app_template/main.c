@@ -54,6 +54,8 @@
 #include "ble_conn_state.h"
 #include "ble_diffuser_peripherial_service.h"
 #include "ble_diffuser_peripherial_service_callbacks.h"
+#include "ble_diffuser_battery_service.h"
+#include "ble_diffuser_versions_service.h"
 
 #define NRF_LOG_MODULE_NAME "APP"
 #include "nrf_log.h"
@@ -105,6 +107,8 @@ static uint16_t m_conn_handle = BLE_CONN_HANDLE_INVALID;                        
    static ble_yy_service_t                     m_yys;
  */
 static ble_diffuser_t m_ble_diffusers;
+static ble_bas_t m_ble_diffuser_batterys;
+static ble_versions_t ble_diffuser_versions;
 
 // YOUR_JOB: Use UUIDs for service(s) used in your application.
 static ble_uuid_t m_adv_uuids[] = {{BLE_UUID_DEVICE_INFORMATION_SERVICE, BLE_UUID_TYPE_BLE}}; /**< Universally unique service identifiers. */
@@ -345,12 +349,37 @@ static void gap_params_init(void)
 static void services_init(void)
 {
     uint32_t err_code;
-    ble_diffuser_init_t init;
+    ble_diffuser_init_t diffuser_init;
+    ble_bas_init_t bas_init;
+    ble_versions_init_t versions_init;
+    
+    memset(&diffuser_init, 0, sizeof(diffuser_init));
+    diffuser_init.rgb_led_write_handler = ble_rgb_led_write_handler;
+    diffuser_init.main_button_write_handler = ble_main_button_write_handler;
+    diffuser_init.fan_write_handler = ble_fan_write_handler;
+    err_code = ble_diffuser_peripherial_init(&m_ble_diffusers, &diffuser_init);
+    APP_ERROR_CHECK(err_code);
+    
+    // Initialize Battery Service.
+    memset(&bas_init, 0, sizeof(bas_init));
+    // Here the sec level for the Battery Service can be changed/increased.
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.cccd_write_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_char_attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_NO_ACCESS(&bas_init.battery_level_char_attr_md.write_perm);
 
-    init.rgb_led_write_handler = ble_rgb_led_write_handler;
-    init.main_button_write_handler = ble_main_button_write_handler;
-    init.fan_write_handler = ble_fan_write_handler;
-    err_code = ble_diffuser_peripherial_init(&m_ble_diffusers, &init);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&bas_init.battery_level_report_read_perm);
+
+    bas_init.evt_handler          = NULL;
+    bas_init.support_notification = true;
+    bas_init.p_report_ref         = NULL;
+    bas_init.initial_batt_level   = 100;
+
+    err_code = ble_diffuser_battery_init(&m_ble_diffuser_batterys, &bas_init);
+    APP_ERROR_CHECK(err_code);
+    
+    memset(&versions_init, 0, sizeof(versions_init));
+    versions_init.evt_handler          = NULL;
+    err_code = ble_diffuser_versions_init(&ble_diffuser_versions, &versions_init);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -576,6 +605,8 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
     on_ble_evt(p_ble_evt);
     ble_advertising_on_ble_evt(p_ble_evt);
     ble_diffuser_on_ble_evt(&m_ble_diffusers, p_ble_evt);
+    ble_bas_on_ble_evt(&m_ble_diffuser_batterys, p_ble_evt);
+    ble_versions_on_ble_evt(&ble_diffuser_versions, p_ble_evt);
 }
 
 
@@ -714,6 +745,10 @@ static void bsp_event_handler(bsp_event_t event)
                 }
             }
             break; // BSP_EVENT_KEY_0
+        case BSP_EVENT_TEST:
+            ble_bas_battery_level_update(&m_ble_diffuser_batterys, (m_ble_diffuser_batterys.battery_level_last)-1);
+            ble_diffuser_main_button_status_update(&m_ble_diffusers);
+            break;
          default:
             break;
     }

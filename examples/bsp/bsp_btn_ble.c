@@ -9,13 +9,15 @@
 #define BTN_ID_WAKEUP             0  /**< ID of button used to wake up the application. */
 #define BTN_ID_SLEEP              0  /**< ID of button used to put the application into sleep mode. */
 #define BTN_ID_DISCONNECT         0  /**< ID of button used to gracefully terminate a connection on long press. */
-#define BTN_ID_WAKEUP_BOND_DELETE 1  /**< ID of button used to wake up the application and delete all bonding information. */
+
+#define BTN_ID_WAKEUP_BOND_DELETE 1  /**< ID of button used to wake up the application and delete all bonding information. Factory Reset*/
 #define BTN_ID_WHITELIST_OFF      1  /**< ID of button used to turn off usage of the whitelist. */
+#define BTN_ID_TEST               1
 
 #define BTN_ACTION_SLEEP          BSP_BUTTON_ACTION_RELEASE    /**< Button action used to put the application into sleep mode. */
 #define BTN_ACTION_DISCONNECT     BSP_BUTTON_ACTION_LONG_PUSH  /**< Button action used to gracefully terminate a connection on long press. */
 #define BTN_ACTION_WHITELIST_OFF  BSP_BUTTON_ACTION_LONG_PUSH  /**< Button action used to turn off usage of the whitelist. */
-
+#define BTN_ACTION_TEST           BSP_BUTTON_ACTION_PUSH
 
 
 /**@brief This macro will return from the current function if err_code
@@ -92,11 +94,20 @@ static uint32_t connection_buttons_configure()
                                                  BSP_EVENT_DEFAULT);
     RETURN_ON_ERROR_NOT_INVALID_PARAM(err_code);
 
+    /*
     err_code = bsp_event_to_button_action_assign(BTN_ID_WHITELIST_OFF,
                                                  BTN_ACTION_WHITELIST_OFF,
                                                  BSP_EVENT_WHITELIST_OFF);
     RETURN_ON_ERROR_NOT_INVALID_PARAM(err_code);
 
+    */
+    // Darren
+    err_code = bsp_event_to_button_action_assign(BTN_ID_TEST,
+                                                 BTN_ACTION_TEST,
+                                                 BSP_EVENT_TEST);
+    RETURN_ON_ERROR_NOT_INVALID_PARAM(err_code);    
+    
+    
     err_code = bsp_event_to_button_action_assign(BTN_ID_DISCONNECT,
                                                  BTN_ACTION_DISCONNECT,
                                                  BSP_EVENT_DISCONNECT);

@@ -397,6 +397,21 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\app_services\ble_diffuser_peripherial_service.c</FilePath>
             </File>
+            <File>
+              <FileName>ble_diffuser_peripherial_service_callbacks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_peripherial_service_callbacks.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_diffuser_firmware_service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_firmware_service.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_diffuser_battery_service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_battery_service.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2745,7 +2760,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile></SFDFile>
+          <SFDFile>$$Device:nRF51422_xxAC$SVD\nrf51.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -3109,6 +3124,21 @@
               <FileName>ble_diffuser_peripherial_service.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\app_services\ble_diffuser_peripherial_service.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_diffuser_peripherial_service_callbacks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_peripherial_service_callbacks.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_diffuser_firmware_service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_firmware_service.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_diffuser_battery_service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_battery_service.c</FilePath>
             </File>
           </Files>
         </Group>
