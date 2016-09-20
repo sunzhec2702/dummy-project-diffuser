@@ -202,7 +202,7 @@ uint32_t ble_diffuser_battery_init(ble_bas_t * p_bas, const ble_bas_init_t * p_b
     p_bas->evt_handler               = p_bas_init->evt_handler;
     p_bas->conn_handle               = BLE_CONN_HANDLE_INVALID;
     p_bas->is_notification_supported = p_bas_init->support_notification;
-    p_bas->battery_level_last        = INVALID_BATTERY_LEVEL;
+    p_bas->battery_level_last        = p_bas_init->initial_batt_level;
 
     // Add service
     BLE_UUID_BLE_ASSIGN(ble_uuid, BLE_UUID_BATTERY_SERVICE);
