@@ -403,14 +403,14 @@
               <FilePath>..\..\..\app_services\ble_diffuser_peripherial_service_callbacks.c</FilePath>
             </File>
             <File>
-              <FileName>ble_diffuser_firmware_service.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\app_services\ble_diffuser_firmware_service.c</FilePath>
-            </File>
-            <File>
               <FileName>ble_diffuser_battery_service.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\app_services\ble_diffuser_battery_service.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_diffuser_versions_service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_versions_service.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1901,9 +1901,14 @@
               </FileOption>
             </File>
             <File>
-              <FileName>app_timer.c</FileName>
+              <FileName>app_uart_fifo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\components\libraries\timer\app_timer.c</FilePath>
+              <FilePath>..\..\..\..\..\..\components\libraries\uart\app_uart_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_util_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>0</UseCPPCompiler>
@@ -1955,9 +1960,9 @@
               </FileOption>
             </File>
             <File>
-              <FileName>app_util_platform.c</FileName>
+              <FileName>app_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
+              <FilePath>..\..\..\..\..\..\components\libraries\timer\app_timer.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>0</UseCPPCompiler>
@@ -2385,6 +2390,11 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\uart\retarget.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3131,14 +3141,14 @@
               <FilePath>..\..\..\app_services\ble_diffuser_peripherial_service_callbacks.c</FilePath>
             </File>
             <File>
-              <FileName>ble_diffuser_firmware_service.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\app_services\ble_diffuser_firmware_service.c</FilePath>
-            </File>
-            <File>
               <FileName>ble_diffuser_battery_service.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\app_services\ble_diffuser_battery_service.c</FilePath>
+            </File>
+            <File>
+              <FileName>ble_diffuser_versions_service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\app_services\ble_diffuser_versions_service.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4629,9 +4639,14 @@
               </FileOption>
             </File>
             <File>
-              <FileName>app_timer.c</FileName>
+              <FileName>app_uart_fifo.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\components\libraries\timer\app_timer.c</FilePath>
+              <FilePath>..\..\..\..\..\..\components\libraries\uart\app_uart_fifo.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_util_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>0</UseCPPCompiler>
@@ -4683,9 +4698,9 @@
               </FileOption>
             </File>
             <File>
-              <FileName>app_util_platform.c</FileName>
+              <FileName>app_timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\..\..\components\libraries\util\app_util_platform.c</FilePath>
+              <FilePath>..\..\..\..\..\..\components\libraries\timer\app_timer.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>0</UseCPPCompiler>
@@ -5113,6 +5128,11 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\..\components\libraries\uart\retarget.c</FilePath>
             </File>
           </Files>
         </Group>

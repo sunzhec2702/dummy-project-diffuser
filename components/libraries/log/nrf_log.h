@@ -57,7 +57,7 @@
 #endif
 
 #include "nrf_log_internal.h"
-
+#include "app_fifo.h"
 /** @def NRF_LOG_ERROR
  *  @brief Macro for logging error messages. It takes a printf-like, formatted
  *  string with up to seven arguments.
@@ -86,10 +86,19 @@
  *  @details This macro is compiled only if @ref NRF_LOG_LEVEL includes debug logs.
  */
 
+
+/*
 #define NRF_LOG_ERROR(...)                     NRF_LOG_INTERNAL_ERROR(__VA_ARGS__)
 #define NRF_LOG_WARNING(...)                   NRF_LOG_INTERNAL_WARNING( __VA_ARGS__)
 #define NRF_LOG_INFO(...)                      NRF_LOG_INTERNAL_INFO( __VA_ARGS__)
+*/
 #define NRF_LOG_DEBUG(...)                     NRF_LOG_INTERNAL_DEBUG( __VA_ARGS__)
+
+// Darren: Need a proper solution.
+#define NRF_LOG_ERROR(...)                     app_uart_printf(__VA_ARGS__)
+#define NRF_LOG_WARNING(...)                   app_uart_printf( __VA_ARGS__)
+#define NRF_LOG_INFO(...)                      app_uart_printf( __VA_ARGS__)
+//#define NRF_LOG_DEBUG(...)                     app_uart_printf( __VA_ARGS__)
 
 /**
  * @brief A macro for logging a formatted string without any prefix or timestamp.

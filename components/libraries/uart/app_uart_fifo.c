@@ -215,6 +215,19 @@ uint32_t app_uart_put(uint8_t byte)
     return err_code;
 }
 
+uint32_t app_uart_printf(const char *pszFmt)
+{
+    uint32_t err_code = NRF_SUCCESS;
+    if (NULL==pszFmt||0==pszFmt[0]) return NRF_ERROR_RESOURCES;
+    while(*pszFmt != '\0') {
+        err_code = app_uart_put(*pszFmt);
+        if (err_code != NRF_SUCCESS) {
+            return err_code;
+        }
+        pszFmt++;
+    }
+    return NRF_SUCCESS;
+}
 
 uint32_t app_uart_close(void)
 {

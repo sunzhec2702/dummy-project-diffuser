@@ -225,6 +225,14 @@ uint32_t app_uart_flush(void);
 uint32_t app_uart_close(void);
 
 
+/**@brief Function for puting string to the UART modules
+ *
+ * @retval  NRF_SUCCESS             If successfully closed.
+ * @retval  NRF_ERROR_INVALID_PARAM If an invalid user id is provided or the user id differs from
+ *                                  the current active user.
+ */
+uint32_t app_uart_printf(const char *pszFmt);
+
 
 #ifdef __cplusplus
 }
